@@ -83,8 +83,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 #  General information about the project.
-project = u'collectd-rabbitmq'
-copyright = u'2015, The New York Times'
+project = 'collectd-rabbitmq'
+copyright = '2015, The New York Times'
 
 #  The version info for the project you're documenting, acts as replacement
 #  for |version| and |release|, also used in various other places throughout
@@ -237,8 +237,8 @@ latex_elements = {
 #  [howto/manual]).
 latex_documents = [
     ('index', 'collectd-rabbitmq.tex',
-     u'collectd-rabbitmq Documentation',
-     u'Mike Buzzetti', 'manual'),
+     'collectd-rabbitmq Documentation',
+     'Mike Buzzetti', 'manual'),
 ]
 
 #  The name of an image file (relative to this directory) to place at
@@ -268,8 +268,8 @@ latex_documents = [
 #  (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'collectd-rabbitmq',
-     u'collectd-rabbitmq Documentation',
-     [u'Mike Buzzetti'], 1)
+     'collectd-rabbitmq Documentation',
+     ['Mike Buzzetti'], 1)
 ]
 
 #  If true, show URL addresses after external links.
@@ -283,8 +283,8 @@ man_pages = [
 #   dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'collectd-rabbitmq',
-     u'collectd-rabbitmq Documentation',
-     u'Mike Buzzetti',
+     'collectd-rabbitmq Documentation',
+     'Mike Buzzetti',
      'collectd-rabbitmq',
      'One line description of project.',
      'Miscellaneous'),

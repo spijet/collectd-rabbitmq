@@ -21,7 +21,7 @@ import json
 import logging
 import sys
 import unittest
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 from mock import Mock, patch
 from collectd_rabbitmq.rabbit import RabbitMQStats
@@ -70,7 +70,7 @@ class TestGetInfo(unittest.TestCase):
         :param mock_urlopen: A patched urllib object
         """
         url = "http://test"
-        mock_urlopen.side_effect = urllib2.HTTPError(url,
+        mock_urlopen.side_effect = urllib.error.HTTPError(url,
                                                      500,
                                                      'Internal Server Error',
                                                      None, None)
@@ -86,7 +86,7 @@ class TestGetInfo(unittest.TestCase):
         :param mock_urlopen: A patched urllib object
         """
         url = "http://test"
-        mock_urlopen.side_effect = urllib2.URLError("URL Error ")
+        mock_urlopen.side_effect = urllib.error.URLError("URL Error ")
         result = self.stats.get_info(url)
         self.assertIsNone(result)
 
@@ -341,29 +341,29 @@ class TestIgnoredQueues(TestStatsBaseClass):
 
         mock_urlopen.side_effect = create_mock_url_repsonse
         stats = self.stats.get_queue_stats()
-        self.assertNotIn('a1', stats.keys())
-        self.assertNotIn('a2', stats.keys())
-        self.assertNotIn('a3', stats.keys())
+        self.assertNotIn('a1', list(stats.keys()))
+        self.assertNotIn('a2', list(stats.keys()))
+        self.assertNotIn('a3', list(stats.keys()))
 
-        self.assertNotIn('b1', stats.keys())
-        self.assertNotIn('b2', stats.keys())
-        self.assertNotIn('b3', stats.keys())
+        self.assertNotIn('b1', list(stats.keys()))
+        self.assertNotIn('b2', list(stats.keys()))
+        self.assertNotIn('b3', list(stats.keys()))
 
-        self.assertNotIn('c1', stats.keys())
-        self.assertNotIn('c2', stats.keys())
-        self.assertNotIn('c3', stats.keys())
+        self.assertNotIn('c1', list(stats.keys()))
+        self.assertNotIn('c2', list(stats.keys()))
+        self.assertNotIn('c3', list(stats.keys()))
 
-        self.assertIn('d1', stats.keys())
-        self.assertIn('d2', stats.keys())
-        self.assertIn('d3', stats.keys())
+        self.assertIn('d1', list(stats.keys()))
+        self.assertIn('d2', list(stats.keys()))
+        self.assertIn('d3', list(stats.keys()))
 
-        self.assertIn('e1', stats.keys())
-        self.assertIn('e2', stats.keys())
-        self.assertIn('e3', stats.keys())
+        self.assertIn('e1', list(stats.keys()))
+        self.assertIn('e2', list(stats.keys()))
+        self.assertIn('e3', list(stats.keys()))
 
-        self.assertIn('f1', stats.keys())
-        self.assertIn('f2', stats.keys())
-        self.assertIn('f3', stats.keys())
+        self.assertIn('f1', list(stats.keys()))
+        self.assertIn('f2', list(stats.keys()))
+        self.assertIn('f3', list(stats.keys()))
 
     @patch('collectd_rabbitmq.rabbit.urllib2.urlopen')
     def test_get_exchanges(self, mock_urlopen):
@@ -386,7 +386,7 @@ class TestIgnoredQueues(TestStatsBaseClass):
         Args:
         :param mock_urlopen: A patched urllib object
         """
-        mock_urlopen.side_effect = urllib2.HTTPError(
+        mock_urlopen.side_effect = urllib.error.HTTPError(
             "testurl", 401, "Forbidden", None, None)
         exchanges = self.stats.get_exchanges("test_vhost")
         self.assertEqual(exchanges, [])
@@ -425,29 +425,29 @@ class TestIgnoredExchanges(TestStatsBaseClass):
 
         mock_urlopen.side_effect = create_mock_url_repsonse
         stats = self.stats.get_exchange_stats()
-        self.assertNotIn('a1', stats.keys())
-        self.assertNotIn('a2', stats.keys())
-        self.assertNotIn('a3', stats.keys())
+        self.assertNotIn('a1', list(stats.keys()))
+        self.assertNotIn('a2', list(stats.keys()))
+        self.assertNotIn('a3', list(stats.keys()))
 
-        self.assertNotIn('b1', stats.keys())
-        self.assertNotIn('b2', stats.keys())
-        self.assertNotIn('b3', stats.keys())
+        self.assertNotIn('b1', list(stats.keys()))
+        self.assertNotIn('b2', list(stats.keys()))
+        self.assertNotIn('b3', list(stats.keys()))
 
-        self.assertNotIn('c1', stats.keys())
-        self.assertNotIn('c2', stats.keys())
-        self.assertNotIn('c3', stats.keys())
+        self.assertNotIn('c1', list(stats.keys()))
+        self.assertNotIn('c2', list(stats.keys()))
+        self.assertNotIn('c3', list(stats.keys()))
 
-        self.assertIn('d1', stats.keys())
-        self.assertIn('d2', stats.keys())
-        self.assertIn('d3', stats.keys())
+        self.assertIn('d1', list(stats.keys()))
+        self.assertIn('d2', list(stats.keys()))
+        self.assertIn('d3', list(stats.keys()))
 
-        self.assertIn('e1', stats.keys())
-        self.assertIn('e2', stats.keys())
-        self.assertIn('e3', stats.keys())
+        self.assertIn('e1', list(stats.keys()))
+        self.assertIn('e2', list(stats.keys()))
+        self.assertIn('e3', list(stats.keys()))
 
-        self.assertIn('f1', stats.keys())
-        self.assertIn('f2', stats.keys())
-        self.assertIn('f3', stats.keys())
+        self.assertIn('f1', list(stats.keys()))
+        self.assertIn('f2', list(stats.keys()))
+        self.assertIn('f3', list(stats.keys()))
 
     @patch('collectd_rabbitmq.rabbit.urllib2.urlopen')
     def test_get_queue(self, mock_urlopen):
@@ -470,7 +470,7 @@ class TestIgnoredExchanges(TestStatsBaseClass):
         Args:
         :param mock_urlopen: A patched urllib object
         """
-        mock_urlopen.side_effect = urllib2.HTTPError(
+        mock_urlopen.side_effect = urllib.error.HTTPError(
             "testurl", 401, "Forbidden", None, None)
         queues = self.stats.get_queues("test_vhost")
         self.assertEqual(queues, [])

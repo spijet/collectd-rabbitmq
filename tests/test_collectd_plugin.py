@@ -27,7 +27,7 @@ from mock import MagicMock, Mock, patch
 # Updating path so that the mock collectd gets added
 sys.path.append(os.path.dirname(__file__))
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-import collectd  # noqa
+from . import collectd  # noqa
 
 from collectd_rabbitmq import collectd_plugin  # noqa
 from tests.utils import create_mock_url_repsonse  # noqa
@@ -133,7 +133,7 @@ class TestCollectdPluginConfig(BaseTestCollectdPlugin):
         self.assertIsNotNone(collectd_plugin.CONFIGS)
         self.assertIsNotNone(collectd_plugin.CONFIGS[0].connection)
         self.assertIsNotNone(collectd_plugin.CONFIGS[0].data_to_ignore)
-        self.assertEquals(len(collectd_plugin.CONFIGS[0].data_to_ignore), 2)
+        self.assertEqual(len(collectd_plugin.CONFIGS[0].data_to_ignore), 2)
 
 
 class TestCollectdPluginExchanges(BaseTestCollectdPlugin):
@@ -524,35 +524,35 @@ class TestCollectdPluginVhost(BaseTestCollectdPlugin):
         Assert empty vhost is set properly.
         """
         vhost = self.collectd_plugin.generate_vhost_name(None)
-        self.assertEquals(vhost, "rabbitmq_default")
+        self.assertEqual(vhost, "rabbitmq_default")
 
     def test_generate_vhost_default(self):
         """
         Assert default vhost is set properly.
         """
         vhost = self.collectd_plugin.generate_vhost_name("/")
-        self.assertEquals(vhost, "rabbitmq_default")
+        self.assertEqual(vhost, "rabbitmq_default")
 
     def test_generate_vhost_start_slash(self):
         """
         Assert vhost that starts with a '/' is set properly.
         """
         vhost = self.collectd_plugin.generate_vhost_name("/vhost")
-        self.assertEquals(vhost, "rabbitmq_slash_vhost")
+        self.assertEqual(vhost, "rabbitmq_slash_vhost")
 
     def test_generate_vhost_end_slash(self):
         """
         Assert vhost that ends with a '/' is set properly.
         """
         vhost = self.collectd_plugin.generate_vhost_name("vhost/")
-        self.assertEquals(vhost, "rabbitmq_vhost_slash")
+        self.assertEqual(vhost, "rabbitmq_vhost_slash")
 
     def test_generate_vhost(self):
         """
         Assert vhost that contains a slash is set properly.
         """
         vhost = self.collectd_plugin.generate_vhost_name("vho/st")
-        self.assertEquals(vhost, "rabbitmq_vho_slash_st")
+        self.assertEqual(vhost, "rabbitmq_vho_slash_st")
 
     def test_generate_vhost_prefix(self):
         """
@@ -560,7 +560,7 @@ class TestCollectdPluginVhost(BaseTestCollectdPlugin):
         """
         self.collectd_plugin.config.vhost_prefix = 'test_prefix'
         vhost = self.collectd_plugin.generate_vhost_name("vhost")
-        self.assertEquals(vhost, "rabbitmq_test_prefix_vhost")
+        self.assertEqual(vhost, "rabbitmq_test_prefix_vhost")
         self.collectd_plugin.config.vhost_prefix = ''
 
 

@@ -20,7 +20,7 @@ This module controls the interactions with collectd
 
 import collectd
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 from collectd_rabbitmq import rabbit
 from collectd_rabbitmq import utils
@@ -136,7 +136,7 @@ class CollectdPlugin(object):
         Generate a "normalized" vhost name without / (or escaped /).
         """
         if name:
-            name = urllib.unquote(name)
+            name = urllib.parse.unquote(name)
 
         if not name or name == '/':
             name = 'default'
@@ -228,7 +228,7 @@ class CollectdPlugin(object):
         cluster_name = stats.get('cluster_name', None)
         prefixed_cluster_name = "rabbitmq_%s" % cluster_name \
                                 if cluster_name else "rabbitmq"
-        for subtree_name, keys in self.overview_stats.items():
+        for subtree_name, keys in list(self.overview_stats.items()):
             subtree = stats.get(subtree_name, {})
             for stat_name in keys:
                 type_name = stat_name
@@ -293,7 +293,7 @@ class CollectdPlugin(object):
         """
         collectd.debug("Dispatching exchange data for {0}".format(vhost_name))
         stats = self.rabbit.get_exchange_stats(vhost_name=vhost_name)
-        for exchange_name, value in stats.iteritems():
+        for exchange_name, value in list(stats.items()):
             self.dispatch_message_stats(value, vhost_name, 'exchanges',
                                         exchange_name)
 
@@ -303,7 +303,7 @@ class CollectdPlugin(object):
         """
         collectd.debug("Dispatching queue data for {0}".format(vhost_name))
         stats = self.rabbit.get_queue_stats(vhost_name=vhost_name)
-        for queue_name, value in stats.iteritems():
+        for queue_name, value in list(stats.items()):
             self.dispatch_message_stats(value, vhost_name, 'queues',
                                         queue_name)
             self.dispatch_queue_stats(value, vhost_name, 'queues',

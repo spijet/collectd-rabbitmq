@@ -20,7 +20,7 @@ Update encrypted deploy password in Travis config file
 """
 
 
-from __future__ import print_function
+
 import base64
 from getpass import getpass
 import json
@@ -33,7 +33,7 @@ from cryptography.hazmat.primitives.serialization import load_pem_public_key
 
 
 try:
-    from urllib import urlopen
+    from urllib.request import urlopen
 except ImportError:
     from urllib.request import urlopen
 
