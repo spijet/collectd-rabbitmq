@@ -21,8 +21,9 @@ python plugin for collectd to obtain rabbitmq stats
 import collectd
 import json
 import ssl
-import urllib.request, urllib.parse, urllib.error
-import urllib.request, urllib.error, urllib.parse
+import urllib.request
+import urllib.parse
+import urllib.error
 
 
 class RabbitMQStats(object):

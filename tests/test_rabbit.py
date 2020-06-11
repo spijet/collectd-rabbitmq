@@ -21,7 +21,9 @@ import json
 import logging
 import sys
 import unittest
-import urllib.request, urllib.error, urllib.parse
+import urllib.request
+import urllib.parse
+import urllib.error
 
 from mock import Mock, patch
 from collectd_rabbitmq.rabbit import RabbitMQStats

@@ -20,7 +20,9 @@ This module controls the interactions with collectd
 
 import collectd
 import re
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
+import urllib.parse
+import urllib.error
 
 from collectd_rabbitmq import rabbit
 from collectd_rabbitmq import utils
