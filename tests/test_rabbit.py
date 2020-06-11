@@ -341,29 +341,29 @@ class TestIgnoredQueues(TestStatsBaseClass):
 
         mock_urlopen.side_effect = create_mock_url_repsonse
         stats = self.stats.get_queue_stats()
-        self.assertNotIn('a1', list(stats.keys()))
-        self.assertNotIn('a2', list(stats.keys()))
-        self.assertNotIn('a3', list(stats.keys()))
+        self.assertNotIn('a1', stats.keys())
+        self.assertNotIn('a2', stats.keys())
+        self.assertNotIn('a3', stats.keys())
 
-        self.assertNotIn('b1', list(stats.keys()))
-        self.assertNotIn('b2', list(stats.keys()))
-        self.assertNotIn('b3', list(stats.keys()))
+        self.assertNotIn('b1', stats.keys())
+        self.assertNotIn('b2', stats.keys())
+        self.assertNotIn('b3', stats.keys())
 
-        self.assertNotIn('c1', list(stats.keys()))
-        self.assertNotIn('c2', list(stats.keys()))
-        self.assertNotIn('c3', list(stats.keys()))
+        self.assertNotIn('c1', stats.keys())
+        self.assertNotIn('c2', stats.keys())
+        self.assertNotIn('c3', stats.keys())
 
-        self.assertIn('d1', list(stats.keys()))
-        self.assertIn('d2', list(stats.keys()))
-        self.assertIn('d3', list(stats.keys()))
+        self.assertIn('d1', stats.keys())
+        self.assertIn('d2', stats.keys())
+        self.assertIn('d3', stats.keys())
 
-        self.assertIn('e1', list(stats.keys()))
-        self.assertIn('e2', list(stats.keys()))
-        self.assertIn('e3', list(stats.keys()))
+        self.assertIn('e1', stats.keys())
+        self.assertIn('e2', stats.keys())
+        self.assertIn('e3', stats.keys())
 
-        self.assertIn('f1', list(stats.keys()))
-        self.assertIn('f2', list(stats.keys()))
-        self.assertIn('f3', list(stats.keys()))
+        self.assertIn('f1', stats.keys())
+        self.assertIn('f2', stats.keys())
+        self.assertIn('f3', stats.keys())
 
     @patch('collectd_rabbitmq.rabbit.urllib2.urlopen')
     def test_get_exchanges(self, mock_urlopen):
@@ -425,29 +425,29 @@ class TestIgnoredExchanges(TestStatsBaseClass):
 
         mock_urlopen.side_effect = create_mock_url_repsonse
         stats = self.stats.get_exchange_stats()
-        self.assertNotIn('a1', list(stats.keys()))
-        self.assertNotIn('a2', list(stats.keys()))
-        self.assertNotIn('a3', list(stats.keys()))
+        self.assertNotIn('a1', stats.keys())
+        self.assertNotIn('a2', stats.keys())
+        self.assertNotIn('a3', stats.keys())
 
-        self.assertNotIn('b1', list(stats.keys()))
-        self.assertNotIn('b2', list(stats.keys()))
-        self.assertNotIn('b3', list(stats.keys()))
+        self.assertNotIn('b1', stats.keys())
+        self.assertNotIn('b2', stats.keys())
+        self.assertNotIn('b3', stats.keys())
 
-        self.assertNotIn('c1', list(stats.keys()))
-        self.assertNotIn('c2', list(stats.keys()))
-        self.assertNotIn('c3', list(stats.keys()))
+        self.assertNotIn('c1', stats.keys())
+        self.assertNotIn('c2', stats.keys())
+        self.assertNotIn('c3', stats.keys())
 
-        self.assertIn('d1', list(stats.keys()))
-        self.assertIn('d2', list(stats.keys()))
-        self.assertIn('d3', list(stats.keys()))
+        self.assertIn('d1', stats.keys())
+        self.assertIn('d2', stats.keys())
+        self.assertIn('d3', stats.keys())
 
-        self.assertIn('e1', list(stats.keys()))
-        self.assertIn('e2', list(stats.keys()))
-        self.assertIn('e3', list(stats.keys()))
+        self.assertIn('e1', stats.keys())
+        self.assertIn('e2', stats.keys())
+        self.assertIn('e3', stats.keys())
 
-        self.assertIn('f1', list(stats.keys()))
-        self.assertIn('f2', list(stats.keys()))
-        self.assertIn('f3', list(stats.keys()))
+        self.assertIn('f1', stats.keys())
+        self.assertIn('f2', stats.keys())
+        self.assertIn('f3', stats.keys())
 
     @patch('collectd_rabbitmq.rabbit.urllib2.urlopen')
     def test_get_queue(self, mock_urlopen):

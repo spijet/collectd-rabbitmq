@@ -74,7 +74,7 @@ class Config(object):
         self.vhost_prefix = vhost_prefix
 
         if data_to_ignore:
-            for key, values in list(data_to_ignore.items()):
+            for key, values in data_to_ignore.items():
                 self.data_to_ignore[key] = list()
                 for value in values:
                     self.data_to_ignore[key].append(re.compile(value))

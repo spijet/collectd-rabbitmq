@@ -38,7 +38,7 @@ class TestFilterDictionary(unittest.TestCase):
                          three='test3')
         test_keys = ['one', 'two']
         filtered = utils.filter_dictionary(test_dict, test_keys)
-        self.assertNotIn('three', list(filtered.keys()))
+        self.assertNotIn('three', filtered.keys())
 
     def test_filter_no_keys(self):
         """

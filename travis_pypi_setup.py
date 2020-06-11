@@ -20,7 +20,6 @@ Update encrypted deploy password in Travis config file
 """
 
 
-
 import base64
 from getpass import getpass
 import json
